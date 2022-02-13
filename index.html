@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Juego Ahorcado</title>
+</head>
+
+<body>
+    <div class="container-menu">
+        <div class="row">
+            <div class="container-menu">
+                <div class="text-light">
+                    <div style="text-align:center">
+                        <h1 class="titulo">Bienvenido Al Juego Del Ahorcado</h1>
+                        <div style="text-align:center">
+                            <input id="input-palabra" class="text-input" type="text" required 
+                            onkeypress="return (event.charCode == 32 || event.charCode == 13) || 
+                            (event.charCode >= 97 && event.charCode <= 122) "
+                                placeholder="1. Ingresa una palabra para jugar">
+                        </div>
+                        <button type="button" class="btn btn-success" id="agregar-palabra">
+                            2. Agrega la Palabra
+                        </button>
+                        
+                    </div>
+                 
+                    <div id="iniciar-juego" class="row text-center">
+                        <div style="text-align:center" style="display:none">
+                            <button type="button" class="btn btn-success" id="jugar">
+                                3. Inicia el Juego
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <ul id="contenedor" class="list-inline">
+                <li class="list-inline-item">
+                    <div>
+                        <input id="letra-input" class="letra-inputq" maxlength="1" type="text" required 
+                        onkeypress="return (event.charCode == 32 || event.charCode == 13) ||
+                        (event.charCode >= 97 && event.charCode <= 122) " placeholder=" 4. Ingresa letra">
+                    </div>
+                </li>
+                <li class="list-inline-item">
+                    <div>
+                        <button type="button" class="btn btn-success" id="boton-compara">
+                            5. Comprueba
+                        </button>
+                    </div>
+                </li>
+                <li class="list-inline-item">
+                    <b>
+                        <div class="text-white font-weight-strong">
+                            <p id="label-palabra">Palabra Secreta</p>
+                        </div>
+                    </b>
+                </li>
+                <b>
+                    <li class="list-inline-item mt-0">
+                        <div class="text-white font-weight-strong">
+                            <p id="output"></p>
+                        </div>
+                </b>
+                </li>
+                <li class="list-inline-item">
+                    <b>
+                        <div class="text-white font-weight-bold">
+                            <p id="label">Número De Intentos</p>
+                        </div>
+                    </b>
+                </li>
+                <li class="list-inline-item">
+                    <b>
+                        <div class="text-white font-weight-bold">
+                            <p id="intentos"></p>
+                        </div>
+                    </b>
+                </li>
+                <div id="victoria" class="row text-center">
+                    <li class="list-inline-item text-center">
+                        <div>
+                            <p>
+                                <h1 class="text-white">FELICIDADES, DESCUBRISTE LA PALABRA SECRETA!</h1>
+                            </p>
+                            <button type="button" class="btn btn-success" id="nuevo-juego"
+                                onclick="window.location.reload()">
+                                Nuevo Juego
+                            </button>
+                        </div>
+                    </li>
+                </div>
+                <div id="derrota" class="row text-center">
+                    <li class="list-inline-item text-center mt-0">
+                        <div class="font-weight-bold">
+                            <b>
+                                <p>
+                                    <h1 class="text-warning">PERDISTE, INTENTALO DE NUEVO</h1>
+                                </p>
+                            </b>
+                            <button type="button" class="btn btn-success" id="nuevo-juego"
+                                onclick="window.location.reload()">
+                                Nuevo Juego
+                            </button>
+
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <div>
+            <canvas id="canvas" height="300px" width="1200px"></canvas>
+        </div>
+    </div>
+    <script type="text/javascript" src="canvas.js"></script>
+    <script type="text/javascript" src="ahorcado.js"></script>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+</body>
+</html>

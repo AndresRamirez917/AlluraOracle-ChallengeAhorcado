@@ -1,0 +1,95 @@
+.titulo {
+  padding: 15px;
+  width: 30vw;
+  margin: auto;
+
+}
+
+.btn {
+  border: 0;
+  font-weight: bold;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  border-radius: 0.5em;
+}
+
+
+
+.text-input {
+  border-radius: 0.5em;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  display: block;
+  padding: 0.5em;
+  width: 30%;
+  height: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1;
+}
+
+/*
+.btn-compara {
+  border: 0;
+  font-weight: bold;
+  padding: 10px;
+  margin-left: 1000px;
+  margin-top: 1px;
+  border-radius: 0.5em;
+  margin-right: auto;
+}
+*/
+/*
+.letra-input {
+  border-radius: 0.5em;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  display: block;
+ margin-top: 1px;
+  width: 30%;
+  height: 50px;
+  margin-left: 500px;
+  margin-right: auto;
+}
+*/
+
+#boton-compara{
+  display: none;
+  height: 5vh;
+  align-items: center;
+  border: 5;
+  font-weight: bold;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-radius: 0.5em;
+  margin-left: auto;
+}
+
+#letra-input{
+  display: none;
+  height: 100vh;
+  align-items: center;
+  border-radius: 0.5em;
+  border: 3px solid rgba(0, 0, 0, 0.2);
+  margin-top: 0px;
+  width: 30%;
+  height: 30px;
+  margin-left: 350px;
+  margin-right: auto;
+}
+
+#output{
+  margin-left: 5px;
+}
+
+#label{
+  display: none;
+
+}
+#label-palabra{
+  display: none;
+}
+
+body{
+  background-image: url("/Fondos\ de\ Pantalla\ Gratis\ Abstractos\ \(270\).jpg")
+}
