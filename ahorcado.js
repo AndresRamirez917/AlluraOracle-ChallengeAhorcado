@@ -24,7 +24,7 @@ let palabraGuiones;
 let intentos = 0;
 let palabraAleatoria;
 
-// AGREGO LA PALABRA
+// GENERO LA PALABRA
 let botonAgregarPalabra = document.querySelector("#agregar-palabra");
 botonAgregarPalabra.addEventListener("click", function () {
 palabraAleatoria = getRandomWord()
@@ -105,7 +105,7 @@ botonCompara.addEventListener("click", function () {
         }            
     } 
    
-// MUESTRO EN ETIQUETAS LA PALABRA SECRETA, LOS INTENTOS Y LA LETRA INGRESADA
+// MUESTRO EN ETIQUETAS LA PALABRA SECRETA, LOS INTENTOS Y LAS LETRAS INGRESADAS
     document.querySelector("#output").innerHTML = palabraGuiones;
     document.querySelector("#intentos").innerHTML = intentos;
     document.getElementById("letra-input").value = '';
