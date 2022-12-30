@@ -26,7 +26,7 @@ let palabraGuiones;
 let intentos = 0;
 let palabraAleatoria;
 
-// GENERO LA PALABRA
+// GENERO LA PALABRA CON EL BOTÓN 
 let botonAgregarPalabra = document.querySelector("#agregar-palabra");
 botonAgregarPalabra.addEventListener("click", function () {
   palabraAleatoria = getRandomWord();
@@ -35,8 +35,8 @@ botonAgregarPalabra.addEventListener("click", function () {
   palabrasArray.push(palabraAleatoria);
   console.log(palabrasArray);
 
-  // CONTROLES QUE SE MUESTRAN AL GENERAR LA PALABRA ALEATORIA = INPUT PARA LAS LETRAS, BOTÓN COMPROBAR LETRA
-  // CANVAS CON EL GRAFICO DE LA HORCA Y ETIQUETAS QUE MUESTRAN INFORMACIÓN DEL JUEGO
+  // CONTROLES QUE SE MUESTRAN AL HACER CLICK EN EL BOTÓN QUE GENERA LA PALABRA ALEATORIA = INPUT PARA LAS LETRAS, 
+  // BOTÓN COMPROBAR LETRA, CANVAS CON EL GRÁFICO DE LA HORCA Y ETIQUETAS QUE MUESTRAN INFORMACIÓN DEL JUEGO
   document.querySelector("#agregar-palabra").disabled = "true";
   document.querySelector("#iniciar-juego").disabled = "true";
   palabraGuiones = palabraAleatoria.replace(/./g, "_ ");
@@ -47,7 +47,7 @@ botonAgregarPalabra.addEventListener("click", function () {
   document.querySelector("#jugar").style.display = "none";
 });
 
-// MUESTRO EL BOTÓN QUE COMPARA LAS LETRAS CON LA PALABRA GENERADA ALEATORIAMENTE
+// BOTÓN QUE COMPARA LAS LETRAS CON LA PALABRA GENERADA ALEATORIAMENTE
 let botonCompara = document.querySelector("#boton-compara");
 botonCompara.addEventListener("click", function () {
   /**
@@ -69,12 +69,12 @@ botonCompara.addEventListener("click", function () {
     if (!palabraAleatoria.includes(letraInput)) {
       intentos++;
     }
-    // VERIFICACIÓN LETRAS REPETIDAS
+    // VERIFICACIÓN LETRAS REPETIDAS A TRAVÉS DE UN MODAL
     if (letraRepetidaArray.includes(letraInput)) {
       alert(`la letra "${letraInput}" ya fue elegida`);
       intentos--;
     }
-    // SI LA LETRA HACE PARTE O NO DE LA PALABRA SE INGRESA AL ARRAY DE LETRASREPETIDAS
+    // SI LA LETRA HACE PARTE O NO DE LA PALABRA SE INGRESA AL ARRAY DE LETRAS REPETIDAS
     else if (
       !palabraAleatoria.includes(letraInput) ||
       palabraAleatoria.includes(letraInput)
@@ -83,7 +83,7 @@ botonCompara.addEventListener("click", function () {
       console.log(letraRepetidaArray);
     }
 
-    // COMPARACIÓN NÚMERO DE INTENTOS
+    // COMPARACIÓN NÚMERO DE INTENTOS CON LOS LLAMADOS A FUNCIONES QUE DIBUJAN LAS PARTES DEL AHORCADO
     if (intentos == 1) {
       console.log(circulo());
     } else if (intentos == 2) {
