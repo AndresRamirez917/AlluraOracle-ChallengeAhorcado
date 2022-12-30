@@ -1,64 +1,85 @@
+// IMPORTACIÓN DEL JSON CON LAS PALABRAS QUE SE GENERARAN ALEATORIAMENTE
+import myJson from './palabrasComunes.json' assert {type: 'json'}
+console.log(myJson)
+
+// FUNCIÓN QUE GENERA LA PALABRA ALEATORIA DENTRO DEL JSON
+function getRandomWord() {
+    const randomNum = Math.floor(Math.random() * (myJson.length - 1)) + 0;
+    return myJson[randomNum];
+  }
+console.log(getRandomWord());
+
+// CÓDIGO PARA CONVERTIR LAS LETRAS EN GUIONES, PENDIENTE POR ANALIZAR
 String.prototype.replaceAt = function (index, character) {
     return this.substr(0, index) + character + this.substr(index + character.length);
 }
 
-//declaro la no visibilidad de estos controles al iniciar
+// DECLARO LA NO VISIBILIDAD DE ESTOS CONTROLES AL INICIAR
 controlesNoVisibles();
 
-//declaro variables
-let palabras = [];
+// DECLARARACIÓN VARIABLES
+let palabrasArray = [];
+let letraRepetidaArray = [];
 let palabraGuiones;
 let intentos = 0;
-let ingresarPalabra;
+let cadenaSinEspacios;
 
-//Agrego la palabra 
+// AGREGO LA PALABRA
 let botonAgregarPalabra = document.querySelector("#agregar-palabra");
 botonAgregarPalabra.addEventListener("click", function () {
-    //comparo la palabra segun reglas en el código html
-    ingresarPalabra = document.querySelector("#input-palabra").value;
-    if (ingresarPalabra == "" || /^[a-z]\s+$/.test(ingresarPalabra)) {
-        alert("Tienes Que Ingresar Una Palabra Para Jugar")
-    } else {
-        //ingreso la palabra del input al array
-        palabras.push(ingresarPalabra);
-        document.querySelector("#input-palabra").disabled = "true"
+cadenaSinEspacios = getRandomWord()
+   
+// INGRESO LA PALABRA GENERADA ALEATORIAMENTE AL ARRAY 
+        palabrasArray.push(cadenaSinEspacios);
+        console.log(palabrasArray)
+
+// CONTROLES QUE SE MUESTRAN AL INGRESAR UNA PALABRA VÁLIDA AL INPUT
         document.querySelector("#agregar-palabra").disabled = "true"
         document.querySelector("#iniciar-juego").disabled = "true"
-        //ingresarPalabra = palabras[Math.floor(Math.random()*palabras.length)];
-        palabraGuiones = ingresarPalabra.replace(/./g, "_ ");
-        document.querySelector("#input-palabra").value = "";
+        palabraGuiones = cadenaSinEspacios.replace(/./g, "_ ");
         document.querySelector("#iniciar-juego").style.display = "flex"
-    }
-})
+        mostrarMenu();
+        horca();
+        document.getElementById("letra-input").focus();
+        document.querySelector("#jugar").style.display = "none";
+    }  
+)
 
-//muestro los controles del juego
-let botonIniciarJuego = document.querySelector("#iniciar-juego");
-botonIniciarJuego.addEventListener("click", function () {
-    mostrarMenu();
-    horca();
-    document.getElementById("letra-input").focus();
-    document.querySelector("#jugar").style.display = "none";
-})
-
+// MUESTRO LOS CONTROLES DONDE SE INGRESAN LAS LETRAS PARA COMPARAR CON LA CADENA INGRESADA
 let botonCompara = document.querySelector("#boton-compara")
 botonCompara.addEventListener("click", function () {
-    //igualo la variable al valor del input, remplazo por guiones 
-    //y comparo segun reglas en el código html
+/**
+*  IGUALO LA VARIABLE AL VALOR DEL INPUT, REMPLAZO POR GUIONES
+*  Y COMPARO SEGÚN RELGAS EN EL CÓDIGO HTML
+*/
     let letraInput = document.querySelector("#letra-input").value
+// VALIDO EL INPUT DE LAS LETRAS INGRESADAS PARA MAYÚSCULAS, NÚMEROS Y ACENTOS
     if (letraInput == "" || /^[a-z]\s+$/.test(letraInput)) {
         alert("Debe De Ingresar Una Letra Para Comparar")
     } else {
-        //remplazo la palabra por guiones
-        for (let i in ingresarPalabra) {
-            if (letraInput == ingresarPalabra[i]) {
+// REMPLAZO LA PALABRA POR GUIONES
+        for (let i in cadenaSinEspacios) {
+            if (letraInput == cadenaSinEspacios[i]) {
                 palabraGuiones = palabraGuiones.replaceAt(i * 2, letraInput);
             }
         }
-        //comparación de intentos
-        if (!ingresarPalabra.includes(letraInput)) {
-            intentos++;
-        }
-        if (intentos == 1) {
+// VERIFICACIÓN DE INTENTOS
+        if (!cadenaSinEspacios.includes(letraInput)) {
+            intentos++;    
+    }
+// VERIFICACIÓN LETRAS REPETIDAS
+    if(letraRepetidaArray.includes(letraInput)){
+        alert(`la letra "${letraInput}" ya fue elegida`)
+        intentos--
+    }
+// SI LA LETRA HACE PARTE O NO DE LA CADENA LA INGRESA AL ARRAY DE LETRASREPETIDAS
+    else if(!cadenaSinEspacios.includes(letraInput) || (cadenaSinEspacios.includes(letraInput))) {
+        letraRepetidaArray.push(letraInput)    
+        console.log(letraRepetidaArray)        
+    }  
+    
+// COMPARACIÓN NÚMERO DE INTENTOS
+    if (intentos == 1) {
             console.log(circulo());
         } else if (intentos == 2) {
             console.log(tronco());
@@ -72,24 +93,35 @@ botonCompara.addEventListener("click", function () {
             console.log(piernaIzq());
         }
         if (intentos >= 6) {
+           
+// MUESTRO Y OCULTO CONTROLES SEGÚN EL NÚMERO DE INTENTOS
 
-            //muestro y oculto controles según el resultado de intentos
             esconderMenuDerrota();
+            document.querySelector(".palabra-Secreta").innerHTML ="La palabra secreta era " + palabrasArray;
         } else {
             if (palabraGuiones.indexOf('_') < 0) {
                 esconderMenuVictoria();
-            }
-        }
-    }
-    //muestro en etiquetas la palabra secreta, los intentos y la letra ingresada    
+            }            
+        }            
+    } 
+   
+// MUESTRO EN ETIQUETAS LA PALABRA SECRETA, LOS INTENTOS Y LA LETRA INGRESADA
     document.querySelector("#output").innerHTML = palabraGuiones;
     document.querySelector("#intentos").innerHTML = intentos;
     document.getElementById("letra-input").value = '';
     document.getElementById("letra-input").focus();
+    document.querySelector(".palabra-Secreta").innerHTML ="La palabra secreta era " + palabrasArray;
+    document.querySelector(".palabra-Secreta2").innerHTML ="La palabra secreta era " + palabrasArray;
+    document.querySelector(".numero-Intentos").innerHTML = "El número de fallos fue " + intentos;
+    document.querySelector(".numero-Intentos2").innerHTML = "El número de fallos fue " + intentos;
+    document.querySelector(".letras-Digitadas").innerHTML = "Usted digitó las letras " +  letraRepetidaArray
+    document.querySelector(".total-Letras").innerHTML = "Total letras " + letraRepetidaArray
 });
 
-//reinicio el juego usando onclick="window.location.reload()"
-//que se encuentra en el código html en el botón nuevo-juego
+/**
+ *  REINICIO EL JUEGO USANDO onclick="window.location.reload()"
+ *  QUE SE ENCUENTRA EN EL CÓDIGO HTML EN EL BOTÓN NUEVO-JUEGO
+ */
 let botonNuevoJuego = document.querySelector("#nuevo-juego")
 botonNuevoJuego.addEventListener("click", function () {
    reiniciarJuego();

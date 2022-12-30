@@ -169,8 +169,8 @@ pincel.fill();
     document.querySelector("#intentos").style.display="none";
     document.querySelector("#jugar").style.display="none";
     document.querySelector("#canvas").style.display = "none"
+    document.querySelector("#palabraSecreta2").style.display="none";
     document.querySelector("#victoria").style.display="flex"
-    
   }
 
   function esconderMenuDerrota(){
@@ -181,9 +181,8 @@ pincel.fill();
     document.querySelector("#output").style.display="none";
     document.querySelector("#intentos").style.display="none";
     document.querySelector("#jugar").style.display="none";
-    document.querySelector("#canvas").style.display="none";
+    document.querySelector("#canvas").style.display="none"; 
     document.querySelector("#derrota").style.display="flex"
-    
   }
 
   function ocultarHorca(){
@@ -205,5 +204,4 @@ function controlesNoVisibles(){
   document.querySelector("#victoria").style.display = "none"
   document.querySelector("#derrota").style.display = "none"
   document.querySelector("#iniciar-juego").style.display = "none"
-  document.getElementById("input-palabra").focus();
 }

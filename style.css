@@ -4,7 +4,13 @@
   margin: auto;
 
 }
+#contenedor{
+ margin-top: 40px;
+}
 
+#canvas{
+  padding-left: 500px;
+}
 .btn {
   border: 0;
   font-weight: bold;
@@ -14,6 +20,17 @@
   border-radius: 0.5em;
 }
 
+.numero-Fallos{
+  color: rgb(244, 244, 248);
+  text-align: center;
+  padding-left: 600px;
+  font-weight:800;
+
+}
+
+.intentos{
+  text-align: center;
+}
 
 
 .text-input {
@@ -80,16 +97,43 @@
 
 #output{
   margin-left: 5px;
+  
 }
 
 #label{
   display: none;
-
 }
+
 #label-palabra{
   display: none;
 }
 
-body{
-  background-image: url("/Fondos\ de\ Pantalla\ Gratis\ Abstractos\ \(270\).jpg")
+.palabra-Secreta{
+  color: aliceblue;
 }
+
+.palabra-Secreta2{
+  color: aliceblue;
+}
+
+.numero-Intentos{
+  color: aliceblue;
+}
+
+.numero-Intentos2{
+  color: aliceblue;
+}
+
+.letras-Digitadas{
+  color: aliceblue;
+}
+
+.total-Letras{
+  color: aliceblue;
+  text-align: center;
+}
+
+body{
+  background-image: url("Fondos\ de\ Pantalla\ Gratis\ Abstractos\ \(270\).jpg")
+}
+

@@ -25,15 +25,9 @@
             <div class="container-menu">
                 <div class="text-light">
                     <div style="text-align:center">
-                        <h1 class="titulo">Bienvenido Al Juego Del Ahorcado</h1>
-                        <div style="text-align:center">
-                            <input id="input-palabra" class="text-input" type="text" required 
-                            onkeypress="return (event.charCode == 32 || event.charCode == 13) || 
-                            (event.charCode >= 97 && event.charCode <= 122) "
-                                placeholder="1. Ingresa una palabra para jugar">
-                        </div>
+                        <h2 class="titulo">Bienvenido Al Juego Del Ahorcado</h2>
                         <button type="button" class="btn btn-success" id="agregar-palabra">
-                            2. Agrega la Palabra
+                            Generar palabra al Azar
                         </button>
                         
                     </div>
@@ -41,7 +35,7 @@
                     <div id="iniciar-juego" class="row text-center">
                         <div style="text-align:center" style="display:none">
                             <button type="button" class="btn btn-success" id="jugar">
-                                3. Inicia el Juego
+                                Inicia el Juego
                             </button>
                         </div>
                     </div>
@@ -55,13 +49,13 @@
                     <div>
                         <input id="letra-input" class="letra-inputq" maxlength="1" type="text" required 
                         onkeypress="return (event.charCode == 32 || event.charCode == 13) ||
-                        (event.charCode >= 97 && event.charCode <= 122) " placeholder=" 4. Ingresa letra">
+                        (event.charCode >= 97 && event.charCode <= 122) " placeholder="Ingresa letra">
                     </div>
                 </li>
                 <li class="list-inline-item">
                     <div>
                         <button type="button" class="btn btn-success" id="boton-compara">
-                            5. Comprueba
+                            Comprueba
                         </button>
                     </div>
                 </li>
@@ -79,13 +73,20 @@
                         </div>
                 </b>
                 </li>
+                <div>
+                    <p>
+                    <h3 class="total-Letras" id="totalLetras"></h3>
+                </p>
+            </div>
                 <li class="list-inline-item">
                     <b>
                         <div class="text-white font-weight-bold">
-                            <p id="label">Número De Intentos</p>
+                            <p class="numero-Fallos" id="label">Número De Fallos</p>
                         </div>
                     </b>
+                    
                 </li>
+               
                 <li class="list-inline-item">
                     <b>
                         <div class="text-white font-weight-bold">
@@ -97,7 +98,16 @@
                     <li class="list-inline-item text-center">
                         <div>
                             <p>
-                                <h1 class="text-white">FELICIDADES, DESCUBRISTE LA PALABRA SECRETA!</h1>
+                                <h2 class="text-white">FELICIDADES, DESCUBRISTE LA PALABRA SECRETA!</h2>
+                            </p>
+                            <p>
+                                <h2 class="palabra-Secreta" id="palabraSecreta"></h2>
+                            </p>
+                            <p>
+                                <h2 class="numero-Intentos" id="numeroIntentos"></h2>
+                            </p>
+                            <p>
+                                <h2 class="letras-Digitadas" id="letrasDigitadas"></h2>
                             </p>
                             <button type="button" class="btn btn-success" id="nuevo-juego"
                                 onclick="window.location.reload()">
@@ -109,11 +119,17 @@
                 <div id="derrota" class="row text-center">
                     <li class="list-inline-item text-center mt-0">
                         <div class="font-weight-bold">
-                            <b>
+                            
                                 <p>
                                     <h1 class="text-warning">PERDISTE, INTENTALO DE NUEVO</h1>
                                 </p>
-                            </b>
+                                <p>
+                                <h2 class="palabra-Secreta2" id="palabraSecreta2"></h2>
+                            </p>
+                            <p>
+                                <h2 class="numero-Intentos2" id="numeroIntentos2"></h2>
+                            </p>
+                            
                             <button type="button" class="btn btn-success" id="nuevo-juego"
                                 onclick="window.location.reload()">
                                 Nuevo Juego
@@ -129,7 +145,8 @@
         </div>
     </div>
     <script type="text/javascript" src="canvas.js"></script>
-    <script type="text/javascript" src="ahorcado.js"></script>
+    <script type="module" src="ahorcado.js"></script>
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
