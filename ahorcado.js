@@ -22,21 +22,21 @@ let palabrasArray = [];
 let letraRepetidaArray = [];
 let palabraGuiones;
 let intentos = 0;
-let cadenaSinEspacios;
+let palabraAleatoria;
 
 // AGREGO LA PALABRA
 let botonAgregarPalabra = document.querySelector("#agregar-palabra");
 botonAgregarPalabra.addEventListener("click", function () {
-cadenaSinEspacios = getRandomWord()
+palabraAleatoria = getRandomWord()
    
 // INGRESO LA PALABRA GENERADA ALEATORIAMENTE AL ARRAY 
-        palabrasArray.push(cadenaSinEspacios);
+        palabrasArray.push(palabraAleatoria);
         console.log(palabrasArray)
 
-// CONTROLES QUE SE MUESTRAN AL INGRESAR UNA PALABRA VÁLIDA AL INPUT
+// CONTROLES QUE SE MUESTRAN AL GENERAR LA PALABRA ALEATORIA
         document.querySelector("#agregar-palabra").disabled = "true"
         document.querySelector("#iniciar-juego").disabled = "true"
-        palabraGuiones = cadenaSinEspacios.replace(/./g, "_ ");
+        palabraGuiones = palabraAleatoria.replace(/./g, "_ ");
         document.querySelector("#iniciar-juego").style.display = "flex"
         mostrarMenu();
         horca();
@@ -58,13 +58,13 @@ botonCompara.addEventListener("click", function () {
         alert("Debe De Ingresar Una Letra Para Comparar")
     } else {
 // REMPLAZO LA PALABRA POR GUIONES
-        for (let i in cadenaSinEspacios) {
-            if (letraInput == cadenaSinEspacios[i]) {
+        for (let i in palabraAleatoria) {
+            if (letraInput == palabraAleatoria[i]) {
                 palabraGuiones = palabraGuiones.replaceAt(i * 2, letraInput);
             }
         }
 // VERIFICACIÓN DE INTENTOS
-        if (!cadenaSinEspacios.includes(letraInput)) {
+        if (!palabraAleatoria.includes(letraInput)) {
             intentos++;    
     }
 // VERIFICACIÓN LETRAS REPETIDAS
@@ -73,7 +73,7 @@ botonCompara.addEventListener("click", function () {
         intentos--
     }
 // SI LA LETRA HACE PARTE O NO DE LA CADENA LA INGRESA AL ARRAY DE LETRASREPETIDAS
-    else if(!cadenaSinEspacios.includes(letraInput) || (cadenaSinEspacios.includes(letraInput))) {
+    else if(!palabraAleatoria.includes(letraInput) || (palabraAleatoria.includes(letraInput))) {
         letraRepetidaArray.push(letraInput)    
         console.log(letraRepetidaArray)        
     }  
