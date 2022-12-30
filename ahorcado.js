@@ -1,18 +1,20 @@
 // IMPORTACIÓN DEL JSON CON LAS PALABRAS QUE SE GENERARAN ALEATORIAMENTE
-import myJson from './palabrasComunes.json' assert {type: 'json'}
-console.log(myJson)
+import myJson from "./palabrasComunes.json" assert { type: "json" };
+console.log(myJson);
 
-// FUNCIÓN QUE GENERA LA PALABRA ALEATORIA DENTRO DEL JSON
+// FUNCIÓN QUE GENERA LA PALABRA ALEATORIA DEL JSON
 function getRandomWord() {
-    const randomNum = Math.floor(Math.random() * (myJson.length - 1)) + 0;
-    return myJson[randomNum];
-  }
+  const randomNum = Math.floor(Math.random() * (myJson.length - 1)) + 0;
+  return myJson[randomNum];
+}
 console.log(getRandomWord());
 
 // CÓDIGO PARA CONVERTIR LAS LETRAS EN GUIONES, PENDIENTE POR ANALIZAR
 String.prototype.replaceAt = function (index, character) {
-    return this.substr(0, index) + character + this.substr(index + character.length);
-}
+  return (
+    this.substr(0, index) + character + this.substr(index + character.length)
+  );
+};
 
 // DECLARO LA NO VISIBILIDAD DE ESTOS CONTROLES AL INICIAR
 controlesNoVisibles();
@@ -27,104 +29,111 @@ let palabraAleatoria;
 // GENERO LA PALABRA
 let botonAgregarPalabra = document.querySelector("#agregar-palabra");
 botonAgregarPalabra.addEventListener("click", function () {
-palabraAleatoria = getRandomWord()
-   
-// INGRESO LA PALABRA GENERADA ALEATORIAMENTE AL ARRAY 
-        palabrasArray.push(palabraAleatoria);
-        console.log(palabrasArray)
+  palabraAleatoria = getRandomWord();
 
-// CONTROLES QUE SE MUESTRAN AL GENERAR LA PALABRA ALEATORIA
-        document.querySelector("#agregar-palabra").disabled = "true"
-        document.querySelector("#iniciar-juego").disabled = "true"
-        palabraGuiones = palabraAleatoria.replace(/./g, "_ ");
-        document.querySelector("#iniciar-juego").style.display = "flex"
-        mostrarMenu();
-        horca();
-        document.getElementById("letra-input").focus();
-        document.querySelector("#jugar").style.display = "none";
-    }  
-)
+  // INGRESO LA PALABRA GENERADA ALEATORIAMENTE AL ARRAY
+  palabrasArray.push(palabraAleatoria);
+  console.log(palabrasArray);
 
-// MUESTRO LOS CONTROLES DONDE SE INGRESAN LAS LETRAS PARA COMPARAR CON LA CADENA INGRESADA
-let botonCompara = document.querySelector("#boton-compara")
+  // CONTROLES QUE SE MUESTRAN AL GENERAR LA PALABRA ALEATORIA = INPUT PARA LAS LETRAS, BOTÓN COMPROBAR LETRA
+  // CANVAS CON EL GRAFICO DE LA HORCA Y ETIQUETAS QUE MUESTRAN INFORMACIÓN DEL JUEGO
+  document.querySelector("#agregar-palabra").disabled = "true";
+  document.querySelector("#iniciar-juego").disabled = "true";
+  palabraGuiones = palabraAleatoria.replace(/./g, "_ ");
+  document.querySelector("#iniciar-juego").style.display = "flex";
+  mostrarMenu();
+  horca();
+  document.getElementById("letra-input").focus();
+  document.querySelector("#jugar").style.display = "none";
+});
+
+// MUESTRO EL BOTÓN QUE COMPARA LAS LETRAS CON LA PALABRA GENERADA ALEATORIAMENTE
+let botonCompara = document.querySelector("#boton-compara");
 botonCompara.addEventListener("click", function () {
-/**
-*  IGUALO LA VARIABLE AL VALOR DEL INPUT, REMPLAZO POR GUIONES
-*  Y COMPARO SEGÚN RELGAS EN EL CÓDIGO HTML
-*/
-    let letraInput = document.querySelector("#letra-input").value
-// VALIDO EL INPUT DE LAS LETRAS INGRESADAS PARA MAYÚSCULAS, NÚMEROS Y ACENTOS
-    if (letraInput == "" || /^[a-z]\s+$/.test(letraInput)) {
-        alert("Debe De Ingresar Una Letra Para Comparar")
-    } else {
-// REMPLAZO LA PALABRA POR GUIONES
-        for (let i in palabraAleatoria) {
-            if (letraInput == palabraAleatoria[i]) {
-                palabraGuiones = palabraGuiones.replaceAt(i * 2, letraInput);
-            }
-        }
-// VERIFICACIÓN DE INTENTOS
-        if (!palabraAleatoria.includes(letraInput)) {
-            intentos++;    
+  /**
+   *  IGUALO LA VARIABLE AL VALOR DEL INPUT, REMPLAZO POR GUIONES
+   *  Y COMPARO SEGÚN RELGAS EN EL CÓDIGO HTML
+   */
+  let letraInput = document.querySelector("#letra-input").value;
+  // VALIDO EL INPUT DE LAS LETRAS INGRESADAS PARA MAYÚSCULAS, NÚMEROS Y ACENTOS
+  if (letraInput == "" || /^[a-z]\s+$/.test(letraInput)) {
+    alert("Debe De Ingresar Una Letra Para Comparar");
+  } else {
+    // REMPLAZO LA PALABRA POR GUIONES
+    for (let i in palabraAleatoria) {
+      if (letraInput == palabraAleatoria[i]) {
+        palabraGuiones = palabraGuiones.replaceAt(i * 2, letraInput);
+      }
     }
-// VERIFICACIÓN LETRAS REPETIDAS
-    if(letraRepetidaArray.includes(letraInput)){
-        alert(`la letra "${letraInput}" ya fue elegida`)
-        intentos--
+    // VERIFICACIÓN DE INTENTOS
+    if (!palabraAleatoria.includes(letraInput)) {
+      intentos++;
     }
-// SI LA LETRA HACE PARTE O NO DE LA CADENA LA INGRESA AL ARRAY DE LETRASREPETIDAS
-    else if(!palabraAleatoria.includes(letraInput) || (palabraAleatoria.includes(letraInput))) {
-        letraRepetidaArray.push(letraInput)    
-        console.log(letraRepetidaArray)        
-    }  
-    
-// COMPARACIÓN NÚMERO DE INTENTOS
-    if (intentos == 1) {
-            console.log(circulo());
-        } else if (intentos == 2) {
-            console.log(tronco());
-        } else if (intentos == 3) {
-            console.log(brazoDer());
-        } else if (intentos == 4) {
-            console.log(brazoIzq());
-        } else if (intentos == 5) {
-            console.log(piernaDer());
-        } else if (intentos == 6) {
-            console.log(piernaIzq());
-        }
-        if (intentos >= 6) {
-           
-// MUESTRO Y OCULTO CONTROLES SEGÚN EL NÚMERO DE INTENTOS
+    // VERIFICACIÓN LETRAS REPETIDAS
+    if (letraRepetidaArray.includes(letraInput)) {
+      alert(`la letra "${letraInput}" ya fue elegida`);
+      intentos--;
+    }
+    // SI LA LETRA HACE PARTE O NO DE LA PALABRA SE INGRESA AL ARRAY DE LETRASREPETIDAS
+    else if (
+      !palabraAleatoria.includes(letraInput) ||
+      palabraAleatoria.includes(letraInput)
+    ) {
+      letraRepetidaArray.push(letraInput);
+      console.log(letraRepetidaArray);
+    }
 
-            esconderMenuDerrota();
-            document.querySelector(".palabra-Secreta").innerHTML ="La palabra secreta era " + palabrasArray;
-        } else {
-            if (palabraGuiones.indexOf('_') < 0) {
-                esconderMenuVictoria();
-            }            
-        }            
-    } 
-   
-// MUESTRO EN ETIQUETAS LA PALABRA SECRETA, LOS INTENTOS Y LAS LETRAS INGRESADAS
-    document.querySelector("#output").innerHTML = palabraGuiones;
-    document.querySelector("#intentos").innerHTML = intentos;
-    document.getElementById("letra-input").value = '';
-    document.getElementById("letra-input").focus();
-    document.querySelector(".palabra-Secreta").innerHTML ="La palabra secreta era " + palabrasArray;
-    document.querySelector(".palabra-Secreta2").innerHTML ="La palabra secreta era " + palabrasArray;
-    document.querySelector(".numero-Intentos").innerHTML = "El número de fallos fue " + intentos;
-    document.querySelector(".numero-Intentos2").innerHTML = "El número de fallos fue " + intentos;
-    document.querySelector(".letras-Digitadas").innerHTML = "Usted digitó las letras " +  letraRepetidaArray
-    document.querySelector(".total-Letras").innerHTML = "Total letras " + letraRepetidaArray
+    // COMPARACIÓN NÚMERO DE INTENTOS
+    if (intentos == 1) {
+      console.log(circulo());
+    } else if (intentos == 2) {
+      console.log(tronco());
+    } else if (intentos == 3) {
+      console.log(brazoDer());
+    } else if (intentos == 4) {
+      console.log(brazoIzq());
+    } else if (intentos == 5) {
+      console.log(piernaDer());
+    } else if (intentos == 6) {
+      console.log(piernaIzq());
+    }
+    if (intentos >= 6) {
+      // MUESTRO Y OCULTO CONTROLES SEGÚN EL NÚMERO DE INTENTOS
+
+      esconderMenuDerrota();
+      document.querySelector(".palabra-Secreta").innerHTML =
+        "La palabra secreta era " + palabrasArray;
+    } else {
+      if (palabraGuiones.indexOf("_") < 0) {
+        esconderMenuVictoria();
+      }
+    }
+  }
+
+  // MUESTRO EN ETIQUETAS LA PALABRA SECRETA, LOS INTENTOS Y LAS LETRAS INGRESADAS
+  document.querySelector("#output").innerHTML = palabraGuiones;
+  document.querySelector("#intentos").innerHTML = intentos;
+  document.getElementById("letra-input").value = "";
+  document.getElementById("letra-input").focus();
+  document.querySelector(".palabra-Secreta").innerHTML =
+    "La palabra secreta era " + palabrasArray;
+  document.querySelector(".palabra-Secreta2").innerHTML =
+    "La palabra secreta era " + palabrasArray;
+  document.querySelector(".numero-Intentos").innerHTML =
+    "El número de fallos fue " + intentos;
+  document.querySelector(".numero-Intentos2").innerHTML =
+    "El número de fallos fue " + intentos;
+  document.querySelector(".letras-Digitadas").innerHTML =
+    "Usted digitó las letras " + letraRepetidaArray;
+  document.querySelector(".total-Letras").innerHTML =
+    "Total letras " + letraRepetidaArray;
 });
 
 /**
  *  REINICIO EL JUEGO USANDO onclick="window.location.reload()"
  *  QUE SE ENCUENTRA EN EL CÓDIGO HTML EN EL BOTÓN NUEVO-JUEGO
  */
-let botonNuevoJuego = document.querySelector("#nuevo-juego")
+let botonNuevoJuego = document.querySelector("#nuevo-juego");
 botonNuevoJuego.addEventListener("click", function () {
-   reiniciarJuego();
-})
-
-
+  reiniciarJuego();
+});
