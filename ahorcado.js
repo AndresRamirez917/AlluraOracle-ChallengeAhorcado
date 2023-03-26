@@ -25,7 +25,11 @@ let letraRepetidaArray = [];
 let palabraGuiones;
 let intentos = 0;
 let palabraAleatoria;
-
+document.querySelector(".confeti").style.display="none";
+document.querySelector(".homero").style.display="none";
+document.querySelector(".muerte").style.display="none";
+document.querySelector(".num-intentos").style.display="none";
+//document.querySelector("num-intentos").style.disabled="none";
 // GENERO LA PALABRA CON EL BOTÓN 
 let botonAgregarPalabra = document.querySelector("#agregar-palabra");
 botonAgregarPalabra.addEventListener("click", function () {
@@ -37,10 +41,11 @@ botonAgregarPalabra.addEventListener("click", function () {
 
   // CONTROLES QUE SE MUESTRAN AL HACER CLICK EN EL BOTÓN QUE GENERA LA PALABRA ALEATORIA = INPUT PARA LAS LETRAS, 
   // BOTÓN COMPROBAR LETRA, CANVAS CON EL GRÁFICO DE LA HORCA Y ETIQUETAS QUE MUESTRAN INFORMACIÓN DEL JUEGO
-  document.querySelector("#agregar-palabra").disabled = "true";
+  document.querySelector("#agregar-palabra").style.display = "none";
   document.querySelector("#iniciar-juego").disabled = "true";
   palabraGuiones = palabraAleatoria.replace(/./g, "_ ");
   document.querySelector("#iniciar-juego").style.display = "flex";
+  document.querySelector(".num-intentos").style.display="flex";
   mostrarMenu();
   horca();
   document.getElementById("letra-input").focus();
@@ -54,9 +59,10 @@ botonCompara.addEventListener("click", function () {
    *  IGUALO LA VARIABLE AL VALOR DEL INPUT, REMPLAZO POR GUIONES
    *  Y COMPARO SEGÚN RELGAS EN EL CÓDIGO HTML
    */
-  let letraInput = document.querySelector("#letra-input").value;
+  document.querySelector(".muerte").style.display="flex";
+  let letraInput = document.querySelector("#letra-input").value.toLowerCase();
   // VALIDO EL INPUT DE LAS LETRAS INGRESADAS PARA MAYÚSCULAS, NÚMEROS Y ACENTOS
-  if (letraInput == "" || /^[a-z]\s+$/.test(letraInput)) {
+  if (letraInput == "" || /^\d*\.?\d*$/.test(letraInput)) {
     alert("Debe De Ingresar Una Letra Para Comparar");
   } else {
     // REMPLAZO LA PALABRA POR GUIONES
@@ -133,7 +139,52 @@ botonCompara.addEventListener("click", function () {
  *  REINICIO EL JUEGO USANDO onclick="window.location.reload()"
  *  QUE SE ENCUENTRA EN EL CÓDIGO HTML EN EL BOTÓN NUEVO-JUEGO
  */
+/*boton ganar */
 let botonNuevoJuego = document.querySelector("#nuevo-juego");
 botonNuevoJuego.addEventListener("click", function () {
-  reiniciarJuego();
+llamarHorca()
+horca()
+//willow()
+//clearCanvas()
 });
+
+/**boton perder */
+let botonNuevoJuego1 = document.querySelector("#nuevo-juego1");
+botonNuevoJuego1.addEventListener("click", function () {
+  
+  llamarHorca()
+  clearCanvas()
+  horca()
+ //willow()
+  //clearCanvas()
+});
+
+function llamarHorca(){
+  palabrasArray=[];
+  letraRepetidaArray=[]
+  intentos=0
+  palabraAleatoria = getRandomWord();
+  palabrasArray.push(palabraAleatoria);
+  document.querySelector("#intentos").innerHTML=""
+  document.querySelector("#output").innerHTML = "";
+  document.querySelector(".total-Letras").innerHTML ="";
+  document.querySelector("#agregar-palabra").style.display = "none"
+  document.querySelector("#iniciar-juego").disabled = "true";
+  document.getElementById('canvas').style.display = "flex";
+  document.querySelector("#label").innerHTML = intentos;
+  // document.querySelector("#label").innerHTML =
+  // "El número de fallos fue " + intentos;
+  //mostrarMenuReinicio()-------------------------------------------------
+  palabraGuiones = palabraAleatoria.replace(/./g, "_ ");
+  document.querySelector("#iniciar-juego").style.display = "flex";
+  mostrarMenu();
+  //horca()
+  document.getElementById("letra-input").focus();
+  document.querySelector("#jugar").style.display = "none";
+  reiniciarJuego();
+}
+
+// function willow(){
+//   return horca()=true
+// }
+

@@ -1,13 +1,18 @@
 let canvas = document.querySelector("canvas");
 let pincel = canvas.getContext("2d");
 
+function clearCanvas() {
+  // let pincel = canvas.getContext("2d");
+  pincel.clearRect(0, 0, canvas.width, canvas.height);
+}
+
 function base1() {
   canvas = document.getElementById('canvas');
   if (canvas.getContext) {
     let pincel = canvas.getContext('2d');
     if (pincel) {
       pincel.lineWidth = 6;
-      pincel.strokeStyle = "#02AE66";
+      pincel.strokeStyle = "#FAAC58";
       pincel.beginPath();
       pincel.moveTo(130, 80);
       pincel.lineTo(150, 150);
@@ -22,7 +27,7 @@ function base2() {
     let pincel = canvas.getContext('2d');
     if (pincel) {
       pincel.lineWidth = 6;
-      pincel.strokeStyle = "#02AE66";
+      pincel.strokeStyle = "#FAAC58";
       pincel.beginPath();
       pincel.moveTo(130, 80);
       pincel.lineTo(105, 150);
@@ -36,7 +41,7 @@ function base2() {
     if (canvas.getContext) {
       let pincel = canvas.getContext('2d');
     pincel.beginPath();
-    pincel.fillStyle = "#02AE66";
+    pincel.fillStyle = "#FAAC58";
     pincel.fillRect(124,-250,10,400);
     }
   }
@@ -46,7 +51,7 @@ function base2() {
     if (canvas.getContext) {
       let pincel = canvas.getContext('2d');
     pincel.beginPath();
-    pincel.fillStyle = "#02AE66";
+    pincel.fillStyle = "#FAAC58";
     pincel.fillRect(124,0,150,10);
     }
   }
@@ -56,7 +61,7 @@ function base2() {
     if (canvas.getContext) {
       let pincel = canvas.getContext('2d');
     pincel.beginPath();
-    pincel.fillStyle = "#02AE66";
+    pincel.fillStyle = "#FAAC58";
     pincel.fillRect(274,0,10,40);
     }
   }
@@ -65,7 +70,7 @@ function base2() {
     canvas = document.getElementById('canvas');
     if (canvas.getContext) {
         let pincel = canvas.getContext('2d');
-        pincel.fillStyle = "white";
+        pincel.fillStyle = "rgb(112, 128, 144)";
 pincel.beginPath();
 pincel.arc(280,40,15,0,2*3.14);
 pincel.fill();
@@ -78,7 +83,7 @@ pincel.fill();
       let pincel = canvas.getContext('2d');
     pincel.fillStyle = "yellow";
     pincel.beginPath();
-    pincel.fillStyle = "white"
+    pincel.fillStyle = "rgb(112, 128, 144)"
     pincel.fillRect(274,53,10,50);
     }
   }
@@ -89,7 +94,7 @@ pincel.fill();
       let pincel = canvas.getContext('2d');
       if (pincel) {
         pincel.lineWidth = 6;
-        pincel.strokeStyle = "white";
+        pincel.strokeStyle = "rgb(112, 128, 144)";
         pincel.beginPath();
         pincel.moveTo(280, 80);
         pincel.lineTo(300, 50);
@@ -104,7 +109,7 @@ pincel.fill();
       let pincel = canvas.getContext('2d');
       if (pincel) {
         pincel.lineWidth = 6;
-        pincel.strokeStyle = "white";
+        pincel.strokeStyle = "rgb(112, 128, 144)";
         pincel.beginPath();
         pincel.moveTo(280, 80);
         pincel.lineTo(255, 50);
@@ -119,7 +124,7 @@ pincel.fill();
       let pincel = canvas.getContext('2d');
       if (pincel) {
         pincel.lineWidth = 6;
-        pincel.strokeStyle = "white";
+        pincel.strokeStyle = "rgb(112, 128, 144)";
         pincel.beginPath();
         pincel.moveTo(278, 100);
         pincel.lineTo(300, 130);
@@ -134,7 +139,7 @@ pincel.fill();
       let pincel = canvas.getContext('2d');
       if (pincel) {
         pincel.lineWidth = 6;
-        pincel.strokeStyle = "white";
+        pincel.strokeStyle = "rgb(112, 128, 144)";
         pincel.beginPath();
         pincel.moveTo(278, 100);
         pincel.lineTo(250, 130);
@@ -155,12 +160,25 @@ pincel.fill();
     document.querySelector("#letra-input").style.display="flex";
     document.querySelector("#boton-compara").style.display="flex";
     document.querySelector("#label-palabra").style.display="flex";
-    document.querySelector("#label").style.display="flex";  
+    document.querySelector("#intentos").style.display="flex";  
     document.querySelector("#output").style.display="flex"
-    
+    document.getElementById('canvas').style.display="flex"
+    clearCanvas()
+  }
+
+  function mostrarMenuReinicio(){
+    document.querySelector("#output").innerHTML = "";
+    document.querySelector(".total-Letras").innerHTML ="";
+    document.querySelector("#agregar-palabra").disabled = "true";
+    document.querySelector("#iniciar-juego").disabled = "true";
+    document.getElementById('canvas').style.display = "flex" 
+    // document.querySelector('canvas').style.display="flex"
   }
   
   function esconderMenuVictoria(){
+    document.querySelector(".muerte").style.display="none";
+    document.querySelector(".homero").style.display="none";
+    document.querySelector(".confeti").style.display="flex";
     document.querySelector("#letra-input").style.display="none";
     document.querySelector("#boton-compara").style.display="none";
     document.querySelector("#label-palabra").style.display="none";
@@ -169,11 +187,15 @@ pincel.fill();
     document.querySelector("#intentos").style.display="none";
     document.querySelector("#jugar").style.display="none";
     document.querySelector("#canvas").style.display = "none"
-    document.querySelector("#palabraSecreta2").style.display="none";
+    // document.querySelector("#palabraSecreta2").style.display="none";
     document.querySelector("#victoria").style.display="flex"
+    document.querySelector(".titulo").style.display="none";
   }
 
   function esconderMenuDerrota(){
+    document.querySelector(".muerte").style.display="none";
+    document.querySelector(".homero").style.display="flex";
+    document.querySelector(".confeti").style.display="none";
     document.querySelector("#letra-input").style.display="none";
     document.querySelector("#boton-compara").style.display="none";
     document.querySelector("#label-palabra").style.display="none";
@@ -183,6 +205,7 @@ pincel.fill();
     document.querySelector("#jugar").style.display="none";
     document.querySelector("#canvas").style.display="none"; 
     document.querySelector("#derrota").style.display="flex"
+    document.querySelector(".titulo").style.display="none";
   }
 
   function ocultarHorca(){
@@ -195,9 +218,16 @@ pincel.fill();
   }
 
 function reiniciarJuego(){
+  document.querySelector(".homero").style.display="none";
+  document.querySelector(".confeti").style.display="none";
   document.querySelector("#victoria").style.display = "none"
   document.querySelector("#derrota").style.display = "none"
-  document.querySelector("#canvas").style.display = "none"
+  document.querySelector("canvas").style.display = "flex"
+  document.querySelector("#agregar-palabra").style.display = "none"
+  document.querySelector(".titulo").style.display="flex";
+  //document.getElementById('#canvas').style.display="block"
+  //horca()
+  //clearCanvas()
 }
 
 function controlesNoVisibles(){
@@ -205,3 +235,4 @@ function controlesNoVisibles(){
   document.querySelector("#derrota").style.display = "none"
   document.querySelector("#iniciar-juego").style.display = "none"
 }
+// export default function() {}
