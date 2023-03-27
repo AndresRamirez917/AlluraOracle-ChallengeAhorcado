@@ -177,6 +177,7 @@ pincel.fill();
   
   function esconderMenuVictoria(){
     document.querySelector(".muerte").style.display="none";
+    document.querySelector(".muerte2").style.display="none";
     document.querySelector(".homero").style.display="none";
     document.querySelector(".confeti").style.display="flex";
     document.querySelector("#letra-input").style.display="none";
@@ -190,11 +191,14 @@ pincel.fill();
     // document.querySelector("#palabraSecreta2").style.display="none";
     document.querySelector("#victoria").style.display="flex"
     document.querySelector(".titulo").style.display="none";
+    document.querySelector("#errores").style.display="none";
+    document.querySelector(".total-Letras").style.display="none";
   }
 
   function esconderMenuDerrota(){
     document.querySelector(".muerte").style.display="none";
     document.querySelector(".homero").style.display="flex";
+    document.querySelector(".muerte2").style.display="none";
     document.querySelector(".confeti").style.display="none";
     document.querySelector("#letra-input").style.display="none";
     document.querySelector("#boton-compara").style.display="none";
@@ -206,6 +210,8 @@ pincel.fill();
     document.querySelector("#canvas").style.display="none"; 
     document.querySelector("#derrota").style.display="flex"
     document.querySelector(".titulo").style.display="none";
+    document.querySelector("#errores").style.display="none";
+    document.querySelector(".total-Letras").style.display="none";
   }
 
   function ocultarHorca(){
@@ -225,6 +231,8 @@ function reiniciarJuego(){
   document.querySelector("canvas").style.display = "flex"
   document.querySelector("#agregar-palabra").style.display = "none"
   document.querySelector(".titulo").style.display="flex";
+  document.querySelector("#errores").style.display="flex";
+  document.querySelector(".total-Letras").style.display="flex";
   //document.getElementById('#canvas').style.display="block"
   //horca()
   //clearCanvas()

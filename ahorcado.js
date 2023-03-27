@@ -25,11 +25,13 @@ let letraRepetidaArray = [];
 let palabraGuiones;
 let intentos = 0;
 let palabraAleatoria;
+// EVITO QUE LOS GIFS SE MUESTREN AL INICIO DEL PROGRAMA
 document.querySelector(".confeti").style.display="none";
 document.querySelector(".homero").style.display="none";
 document.querySelector(".muerte").style.display="none";
+document.querySelector(".muerte2").style.display="none";
 document.querySelector(".num-intentos").style.display="none";
-//document.querySelector("num-intentos").style.disabled="none";
+
 // GENERO LA PALABRA CON EL BOTÓN 
 let botonAgregarPalabra = document.querySelector("#agregar-palabra");
 botonAgregarPalabra.addEventListener("click", function () {
@@ -40,7 +42,7 @@ botonAgregarPalabra.addEventListener("click", function () {
   console.log(palabrasArray);
 
   // CONTROLES QUE SE MUESTRAN AL HACER CLICK EN EL BOTÓN QUE GENERA LA PALABRA ALEATORIA = INPUT PARA LAS LETRAS, 
-  // BOTÓN COMPROBAR LETRA, CANVAS CON EL GRÁFICO DE LA HORCA Y ETIQUETAS QUE MUESTRAN INFORMACIÓN DEL JUEGO
+  // BOTÓN COMPROBAR LETRA, CANVAS CON EL GRÁFICO DE LA HORCA, ETIQUETAS QUE MUESTRAN INFORMACIÓN DEL JUEGO Y EL GIF MUERTE
   document.querySelector("#agregar-palabra").style.display = "none";
   document.querySelector("#iniciar-juego").disabled = "true";
   palabraGuiones = palabraAleatoria.replace(/./g, "_ ");
@@ -99,7 +101,10 @@ botonCompara.addEventListener("click", function () {
     } else if (intentos == 4) {
       console.log(brazoIzq());
     } else if (intentos == 5) {
+      document.querySelector(".muerte").style.display="none";
+      
       console.log(piernaDer());
+      document.querySelector(".muerte2").style.display="flex";
     } else if (intentos == 6) {
       console.log(piernaIzq());
     }
