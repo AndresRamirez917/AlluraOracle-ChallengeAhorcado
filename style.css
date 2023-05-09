@@ -23,6 +23,7 @@
  margin-top: 40px;
 } */
 
+
 .madre{
   text-align: center;
   margin: 0 auto;
@@ -448,9 +449,9 @@ margin-bottom: 90px;
 
   .muerte{
 
-    margin-top: 5px;
-   height: 350px;
-    width: 100%;
+    padding: 200px;
+    height: 100px;
+     width: 100%;
     background-image: url("/muerte.gif");
     background-repeat: no-repeat;
   background-position: center;
@@ -458,8 +459,8 @@ margin-bottom: 90px;
   }
 
   .muerte2{
-    margin-top: 50px;
-    height: 350px;
+   padding: 100px;
+    height: 100px;
      width: 100%;
      background-image: url("/muerte4.gif");
      background-repeat: no-repeat;

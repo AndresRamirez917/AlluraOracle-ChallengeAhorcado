@@ -1,0 +1,83 @@
+.wrapper{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+ .container{
+     padding: 70px 300px;
+    padding: 50px 0; 
+   margin: 0 auto;  
+
+} 
+
+
+.container-menu,
+#letra-input,
+#boton-compara,
+#label-palabra,
+#output,
+.numero-Fallos,
+#errores,
+#totalLetras,
+#totalLetras,
+.madre,
+.muerte,
+.muerte2,
+.derechos{
+    grid-column: 1;
+}
+
+.container-menu{
+    grid-row: 1;
+}
+
+
+#letra-input{
+    grid-row: 2;
+}
+
+
+#boton-compara{ 
+    grid-row: 3;
+}
+
+
+
+#label-palabra{
+    grid-row: 4;
+}
+
+#output{
+    grid-row: 5;
+}
+
+.numero-Fallos{
+    grid-row: 6;
+}
+
+#errores{
+    grid-row: 7;
+}
+
+/* #totalLetras{
+    grid-row: 8;
+} */
+
+#totalLetras{
+    grid-row: 8;
+}
+
+.madre{
+    grid-row: 9;
+}
+.muerte{
+    grid-row: 10;
+}
+
+.muerte2{
+    grid-row: 11;
+}
+
+.derechos{
+    grid-row: 12;
+}

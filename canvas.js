@@ -1,3 +1,4 @@
+//  import { reiniciar } from "./ahorcado.js";
 let canvas = document.querySelector("canvas");
 let pincel = canvas.getContext("2d");
 
@@ -36,7 +37,7 @@ function base2() {
   }
 }
 
-  function linea1() {
+function linea1() {
     canvas = document.getElementById('canvas');
     if (canvas.getContext) {
       let pincel = canvas.getContext('2d');
@@ -157,31 +158,36 @@ pincel.fill();
   }  
 
   function mostrarMenu(){
-    document.querySelector("#letra-input").style.display="flex";
-    document.querySelector("#boton-compara").style.display="flex";
-    document.querySelector("#label-palabra").style.display="flex";
-    document.querySelector("#intentos").style.display="flex";  
-    document.querySelector("#output").style.display="flex"
-    document.getElementById('canvas').style.display="flex"
+    document.querySelector("#letra-input").style.visibility="visible"
+    document.querySelector("#boton-compara").style.visibility="visible"
+    document.querySelector("#label-palabra").style.display="grid";
+    document.querySelector("#intentos").style.display="grid";  
+    document.querySelector("#output").style.display="grid"
+    document.getElementById('canvas').style.display="grid"
+    document.querySelector("#agregar-palabra").style.visibility="visible"
+    document.querySelector("#label").style.visibility="hidden"
     clearCanvas()
   }
 
   function mostrarMenuReinicio(){
     document.querySelector("#output").innerHTML = "";
     document.querySelector(".total-Letras").innerHTML ="";
-    document.querySelector("#agregar-palabra").disabled = "true";
+    document.querySelector("#agregar-palabra").style.visibility = "visible";
     document.querySelector("#iniciar-juego").disabled = "true";
-    document.getElementById('canvas').style.display = "flex" 
-    // document.querySelector('canvas').style.display="flex"
+    document.getElementById('canvas').style.display = "grid" 
+    // document.querySelector('canvas').style.display="grid"
+    document.querySelector("#agregar-palabra").style.visibility="visible"
+    document.querySelector("#label").style.visibility="hidden"
+    // document.querySelector("#letra-input").style.visibility="hidden"
   }
   
   function esconderMenuVictoria(){
     document.querySelector(".muerte").style.display="none";
     document.querySelector(".muerte2").style.display="none";
-    document.querySelector(".homero").style.display="none";
-    document.querySelector(".confeti").style.display="flex";
-    document.querySelector("#letra-input").style.display="none";
-    document.querySelector("#boton-compara").style.display="none";
+    document.querySelector(".homero").style.visibility="hidden";
+    document.querySelector(".confeti").style.visibility="visible";
+    document.querySelector("#letra-input").style.visibility="hidden"
+    document.querySelector("#boton-compara").style.visibility="hidden"
     document.querySelector("#label-palabra").style.display="none";
     document.querySelector("#label").style.display="none";  
     document.querySelector("#output").style.display="none";
@@ -189,29 +195,34 @@ pincel.fill();
     document.querySelector("#jugar").style.display="none";
     document.querySelector("#canvas").style.display = "none"
     // document.querySelector("#palabraSecreta2").style.display="none";
-    document.querySelector("#victoria").style.display="flex"
+    document.querySelector("#victoria").style.display="grid"
     document.querySelector(".titulo").style.display="none";
     document.querySelector("#errores").style.display="none";
     document.querySelector(".total-Letras").style.display="none";
+    document.querySelector("#agregar-palabra").style.visibility="hidden"
+    document.querySelector("#label").style.visibility="hidden"
   }
 
   function esconderMenuDerrota(){
     document.querySelector(".muerte").style.display="none";
-    document.querySelector(".homero").style.display="flex";
+    document.querySelector(".homero").style.visibility="visible";
     document.querySelector(".muerte2").style.display="none";
-    document.querySelector(".confeti").style.display="none";
-    document.querySelector("#letra-input").style.display="none";
-    document.querySelector("#boton-compara").style.display="none";
+    document.querySelector(".confeti").style.visibility="hidden";
+    // document.querySelector(".container").style.visibility="hidden"
+    document.querySelector("#letra-input").style.visibility="hidden"
+    document.querySelector("#boton-compara").style.visibility="hidden"
     document.querySelector("#label-palabra").style.display="none";
     document.querySelector("#label").style.display="none";  
     document.querySelector("#output").style.display="none";
     document.querySelector("#intentos").style.display="none";
     document.querySelector("#jugar").style.display="none";
     document.querySelector("#canvas").style.display="none"; 
-    document.querySelector("#derrota").style.display="flex"
+    document.querySelector("#derrota").style.display="grid"
     document.querySelector(".titulo").style.display="none";
     document.querySelector("#errores").style.display="none";
     document.querySelector(".total-Letras").style.display="none";
+    document.querySelector("#agregar-palabra").style.visibility="hidden"
+    document.querySelector("#label").style.visibility="hidden"
   }
 
   function ocultarHorca(){
@@ -223,24 +234,41 @@ pincel.fill();
       
   }
 
-function reiniciarJuego(){
-  document.querySelector(".homero").style.display="none";
-  document.querySelector(".confeti").style.display="none";
+  function reiniciarJuego(){
+  document.querySelector(".homero").style.visibility="hidden";
+  document.querySelector(".confeti").style.visibility="hidden";
+  // document.querySelector(".wrapper").style.visibility="visible"
   document.querySelector("#victoria").style.display = "none"
   document.querySelector("#derrota").style.display = "none"
-  document.querySelector("canvas").style.display = "flex"
-  document.querySelector("#agregar-palabra").style.display = "none"
-  document.querySelector(".titulo").style.display="flex";
-  document.querySelector("#errores").style.display="flex";
-  document.querySelector(".total-Letras").style.display="flex";
+  document.querySelector("canvas").style.display = "grid"
+  // document.querySelector("#agregar-palabra").style.display = "none"
+  document.querySelector(".titulo").style.display="grid";
+  document.querySelector("#errores").style.visibility="hidden";
+  document.querySelector(".total-Letras").style.display="grid";
+  document.querySelector("#boton-compara").style.visibility="hidden"
   //document.getElementById('#canvas').style.display="block"
   //horca()
   //clearCanvas()
+  document.querySelector("#agregar-palabra").style.visibility="visible"
+  document.querySelector("#letra-input").style.visibility="hidden"
+  document.querySelector("#label").style.visibility="hidden"
+  document.querySelector("#agregar-palabra").style.display="flex";
+  reiniciar()
 }
 
 function controlesNoVisibles(){
   document.querySelector("#victoria").style.display = "none"
   document.querySelector("#derrota").style.display = "none"
   document.querySelector("#iniciar-juego").style.display = "none"
+  document.querySelector("#agregar-palabra").style.visibility="visible"
+  document.querySelector("#label").style.visibility="hidden"
 }
 // export default function() {}
+
+// function reiniciaArray(){
+//   palabrasArray.shift()
+// }
+
+// function reiArray(){
+//   reiniciararray.palabraArray.shift()
+// }
